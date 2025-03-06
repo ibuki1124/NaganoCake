@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light px-3">
+  <%= link_to "NaganoCake", root_path, class: "navbar-brand" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="ml-auto">
+      <div>
+        <ul class="navbar-nav">
+          <% if customer_signed_in? %> <!-- 会員がログインしている場合 -->
+            <li class="nav-item my-2">
+              <%= link_to "マイページ", root_path, class: "nav-link btn btn-outline-secondary px-3 py-2" %>
+            </li>
+            <li class="nav-item my-2">
+              <%= link_to "商品一覧", root_path, class: "nav-link btn btn-outline-secondary px-3 py-2 ml-md-3" %>
+            </li>
+            <li class="nav-item my-2">
+              <%= link_to "カート", root_path, class: "nav-link btn btn-outline-secondary px-3 py-2 ml-md-3" %>
+            </li>
+            <li class="nav-item my-2">
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, data: { confirm: "本当にログアウトしますか？" }, class: "nav-link btn btn-outline-secondary px-3 py-2 ml-md-3" %>
+            </li>
+          <% else %> <!-- 誰もログインしていない場合 -->
+            <li class="nav-item my-2">
+              <%= link_to "about", about_path, class: "nav-link btn btn-outline-secondary px-3 py-2" %>
+            </li>
+            <li class="nav-item my-2">
+              <a class="nav-link btn btn-outline-secondary px-3 py-2 ml-md-3" href="#">商品一覧</a>
+            </li>
+            <li class="nav-item my-2">
+              <%= link_to "新規登録", new_customer_registration_path, class: "nav-link btn btn-outline-secondary px-3 py-2 ml-md-3" %>
+            </li>
+            <li class="nav-item my-2">
+              <%= link_to "ログイン", new_customer_session_path, class: "nav-link btn btn-outline-secondary px-3 py-2 ml-md-3" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div>
+        <!-- 検索フォーム（未実装） -->
+        <form class="form-inline my-2 my-lg-0 mr-3 justify-content-end">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> 
+      </div>
+    </div>
+  </div>
+</nav>
