@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
     sessions: 'admin/sessions'
   }
-  # 顧客用
+  namespace :admin do
+    root to: 'homes#top'
+  end
+  # 会員側
   devise_for :customers, skip: [:passwords], controllers: {
     sessions: 'public/sessions',
     registrations: 'public/registrations'
   }
-  # 会員側
   scope module: :public do
     root to: 'homes#top'
     get 'about' => "homes#about", as: "about"
