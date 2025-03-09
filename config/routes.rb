@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :items, except: [:destroy]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
   # 会員側
   devise_for :customers, skip: [:passwords], controllers: {
