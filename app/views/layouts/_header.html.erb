@@ -20,6 +20,19 @@
             <li class="nav-item my-2">
               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, data: { confirm: "本当にログアウトしますか？" }, class: "nav-link btn btn-outline-secondary px-3 py-2 ml-md-3" %>
             </li>
+          <% elsif admin_signed_in? %> <!-- 管理者がログインしている場合 -->
+            <li class="nav-item my-2">
+              <%= link_to "商品一覧", root_path, class: "nav-link btn btn-outline-secondary px-3 py-2" %>
+            </li>
+            <li class="nav-item my-2">
+              <%= link_to "会員一覧", root_path, class: "nav-link btn btn-outline-secondary px-3 py-2 ml-md-3" %>
+            </li>
+            <li class="nav-item my-2">
+              <%= link_to "注文履歴", root_path, class: "nav-link btn btn-outline-secondary px-3 py-2 ml-md-3" %>
+            </li>
+            <li class="nav-item my-2">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, data: { confirm: "本当にログアウトしますか？" }, class: "nav-link btn btn-outline-secondary px-3 py-2 ml-md-3" %>
+            </li>
           <% else %> <!-- 誰もログインしていない場合 -->
             <li class="nav-item my-2">
               <%= link_to "about", about_path, class: "nav-link btn btn-outline-secondary px-3 py-2" %>
