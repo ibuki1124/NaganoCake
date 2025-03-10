@@ -1,2 +1,33 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<h1>商品編集</h1>
+<%= form_with model: [:admin, @item], local:true do |f| %>
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :introduction %>
+    <%= f.text_area :introduction %>
+  </div>
+  <div class="field">
+    <%= f.label :genre_id %>
+    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name, @item.genre_id) %>
+  </div>
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :is_active %>
+    <%= f.radio_button :is_active, true %>
+    <%= f.label :is_active, '販売中' %>
+    <%= f.radio_button :is_active, false %>
+    <%= f.label :is_active, '販売停止中' %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
