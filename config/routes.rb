@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
   end
   # 会員側
   devise_for :customers, skip: [:passwords], controllers: {
