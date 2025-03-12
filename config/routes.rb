@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => "homes#about", as: "about"
+    resources :items, only: [:index, :show]
     resources :addresses, except: [:new, :show]
     resources :cart_items, only: [:index, :create, :update, :destroy]
     delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all_cart_items'
