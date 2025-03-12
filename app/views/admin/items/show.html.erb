@@ -6,7 +6,7 @@
   <%= @item.name %><br>
   <%= @item.introduction %><br>
   <%= @item.genre.name %><br>
-  <%= @include_tax %>（<%= @item.price %>）<br>
+  <%= @item.with_tax_price %>（<%= @item.price %>）<br>
   <%= @item.is_active ? '販売中' : '販売停止中' %><br>
   <%= link_to '編集', edit_admin_item_path(@item) %>
 </div>

@@ -12,14 +12,14 @@
   <% @cart_items.each do |cart_item| %>
     <tr>
       <td><%= cart_item.item.name %></td>
-      <td><%= (cart_item.item.price * 1.1).floor %></td>
+      <td><%= cart_item.with_tax_price %></td>
       <td>
         <%= form_with model: cart_item, local: true do |f| %>
           <%= f.select :amount, *[1..10] %>
           <%= f.submit '変更' %>
         <% end %>
       </td>
-      <td><%= ((cart_item.item.price * 1.1) * cart_item.amount).floor %></td>
+      <td><%= cart_item.with_tax_price * cart_item.amount %></td>
       <td><%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
     </tr>
   <% end %>
@@ -28,6 +28,6 @@
       <%= link_to '買い物を続ける', items_path %>
     </td>
     <td>合計</td>
-    <td><%= @cart_items.sum { |cart_item| cart_item.item.price * 1.1 * cart_item.amount }.floor %></td>
+    <td><%= @cart_items.sum { |cart_item| cart_item.with_tax_price * cart_item.amount} %></td>
   </tr>
 </table>

@@ -1,7 +1,7 @@
 <%= image_tag @item.get_item_image(200, 100) %>
 <h1><%= @item.name %></h1>
 <p><%= @item.introduction %></p>
-<p><%= @item.price %></p>
+<p><%= @item.with_tax_price %></p>
 <%= form_with model:@cart_item do |f| %>
   <%= f.hidden_field :item_id, value: @item.id %>
   <%= f.select :amount, *[1..10] %>

@@ -10,4 +10,12 @@ class Item < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
+
+  def with_tax_price
+    (price * 1.1).floor
+  end
+
+  def subtotal(cart_item)
+    item.with_tax_price * amount
+  end
 end
