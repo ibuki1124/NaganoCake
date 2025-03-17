@@ -33,3 +33,13 @@
 <p><%= @order.payment_method_i18n %></p>
 <h2>お届け先</h2>
 <p><%= "〒" + @order.postal_code + " " + @order.address + " " + @order.name %></p>
+<%= form_with model: @order, url: orders_path do |f| %>
+  <%= f.hidden_field :postal_code %>
+  <%= f.hidden_field :address %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :payment_method %>
+  <%= f.hidden_field :shipping_cost %>
+  <%= f.hidden_field :total_payment %>
+  <%= f.hidden_field :status %>
+  <%= f.submit "注文を確定する" %>
+<% end %>
