@@ -6,8 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# 管理者アカウント
-Admin.create!(
-  email: 'admin@example.com',
-  password: 'password'
-)
+require 'faker' # Fakerを使用するために追加
+require "./db/seeds/account.rb" # ユーザーのseedデータを作成するために追加
+require "./db/seeds/genre.rb" # ジャンルのseedデータを作成するために追加
+require "./db/seeds/item.rb" # 商品のseedデータを作成するために追加
