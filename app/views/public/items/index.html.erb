@@ -1,10 +1,12 @@
 <h1>商品一覧</h1>
 <% @items.each do |item| %>
-  <div>
-    <%= link_to item_path(item) do %>
-      <%= image_tag item.get_item_image(200, 100) %>
-    <% end %>
-    <p><%= item.name %></p>
-    <p><%= item.with_tax_price %></p>
-  </div>
+  <% if item.is_active %>
+    <div>
+      <%= link_to item_path(item) do %>
+        <%= image_tag item.get_item_image(200, 100) %>
+      <% end %>
+      <p><%= item.name %></p>
+      <p><%= item.with_tax_price %></p>
+    </div>
+  <% end %>
 <% end %>
