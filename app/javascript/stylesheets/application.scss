@@ -1,1 +1,10 @@
 @use '~bootstrap/scss/bootstrap';
+
+.top-image{
+  background-image: url("../../assets/images/items/item-2.jpg");
+  background-size: cover;
+  background-position: center;  
+}
+.pagination {
+  justify-content: center;
+}
