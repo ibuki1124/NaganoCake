@@ -1,9 +1,26 @@
-<%= image_tag @item.get_item_image(200, 100) %>
-<h1><%= @item.name %></h1>
-<p><%= @item.introduction %></p>
-<p><%= @item.with_tax_price %></p>
-<%= form_with model:@cart_item do |f| %>
-  <%= f.hidden_field :item_id, value: @item.id %>
-  <%= f.select :amount, *[1..10] %>
-  <%= f.submit "カートに入れる" %>
-<% end %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render "public/temp/genre_search", genres: @genres %>
+  </div>
+  <div class="col-md-9 mt-3">
+    <div class="row">
+      <div class="col-md-5">
+        <%= image_tag @item.image, class:"img-fluid" %>
+      </div>
+      <div class="col-md-6 ml-3">
+        <h2><%= @item.name %></h2>
+        <p><%= @item.introduction %></p>
+        <div class="my-5">
+          <div class="h3 d-inline"><%= number_to_currency(@item.with_tax_price, unit: "￥", format: "%u%n") %></div>
+          <span>(税込)</span>
+        </div>
+        <%= form_with model:@cart_item do |f| %>
+          <div class="form-group d-flex">
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.select :amount, *[1..10], {}, class:"form-control d-inline mr-5" %>
+            <%= f.submit "カートに入れる", class:"btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>
