@@ -1,36 +1,58 @@
-<h1>ショッピングカート</h1>
-<div>
-  <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, data: { confirm: '本当にカートを空にしますか?' } %>
+<div class="d-flex justify-content-between align-items-center flex-wrap">
+  <h3 class="title d-inline px-3">ショッピングカート</h3>
+  <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, data: { confirm: '本当にカートを空にしますか?' }, class:"btn btn-danger" %>
 </div>
-<table>
-  <tr>
-    <th>商品名</th>
-    <th>単価（税込）</th>
-    <th>数量</th>
-    <th>小計</th>
-  </tr>
-  <% @cart_items.each do |cart_item| %>
+<div class="table-responsive text-nowrap">
+  <table class="table table-bordered mt-3">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">商品名</th>
+        <th scope="col">単価（税込）</th>
+        <th scope="col">数量</th>
+        <th scope="col">小計</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @cart_items.empty? %>
+        <tr>
+          <td colspan="5" class="text-center">カートに商品がありません。</td>
+        </tr>
+      <% end %>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td class="text-wrap">
+            <%= image_tag cart_item.item.get_item_image(50,50), class:"img-fluid" %>
+            <%= cart_item.item.name %>
+          </td>
+          <td style="vertical-align: middle;">
+            <%= cart_item.with_tax_price %>
+          </td>
+          <td style="vertical-align: middle;">
+            <%= form_with model: cart_item, local: true do |f| %>
+              <div class="form-group d-flex mb-0">
+                <%= f.select :amount, *[1..10], {}, class:"form-control d-inline mr-2 w-auto" %>
+                <%= f.submit '変更', class:"btn btn-success" %>
+              </div>
+            <% end %>
+          <td style="vertical-align: middle;"><%= cart_item.with_tax_price * cart_item.amount %></td>
+          <td style="vertical-align: middle;">
+            <%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: { confirm: '本当に削除しますか?' }, class:"btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="d-flex justify-content-between align-items-center flex-wrap">
+  <%= link_to '買い物を続ける', items_path, class:"btn btn-primary ml-3 my-2" %>
+  <table class="table table-bordered my-2" style="width: 200px;">
     <tr>
-      <td><%= cart_item.item.name %></td>
-      <td><%= cart_item.with_tax_price %></td>
-      <td>
-        <%= form_with model: cart_item, local: true do |f| %>
-          <%= f.select :amount, *[1..10] %>
-          <%= f.submit '変更' %>
-        <% end %>
-      </td>
-      <td><%= cart_item.with_tax_price * cart_item.amount %></td>
-      <td><%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
+      <th scope="row" class="bg-light">合計金額</th>
+      <td><%= @cart_items.sum { |cart_item| cart_item.with_tax_price * cart_item.amount} %></td>
     </tr>
-  <% end %>
-  <tr>
-    <td>
-      <%= link_to '買い物を続ける', items_path %>
-    </td>
-    <td>合計</td>
-    <td><%= @cart_items.sum { |cart_item| cart_item.with_tax_price * cart_item.amount} %></td>
-  </tr>
-</table>
-<div>
-  <%= link_to '情報入力に進む', new_order_path %>
+  </table>
+</div>
+<div class="text-center mt-3">
+  <%= link_to '情報入力に進む', new_order_path, class:"btn btn-success btn-lg" %>
 </div>
