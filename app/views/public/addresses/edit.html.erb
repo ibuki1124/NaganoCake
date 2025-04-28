@@ -1,18 +1,23 @@
-<h1>配送先編集</h1>
-<%= form_with model: @address, local: true do |f| %>
-  <div class="field">
-    <%= f.label :postal_code %>
-    <%= f.text_field :postal_code %>
+<h3 class="title d-inline px-3">配送先編集</h3>
+<%= form_with model: @address, local: true, class: "mt-5" do |f| %>
+    <div class="field row mb-2">
+      <%= f.label :postal_code, class:"col-lg-3 d-lg-flex mb-0 mt-2" %>
+      <div class="col-lg-3 d-lg-flex align-items-center">
+        <%= f.text_field :postal_code, placeholder:"0000000", class:"w-100 mt-2" %>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :address %>
-    <%= f.text_field :address %>
+  <div class="field row mb-2">
+    <%= f.label :address, class:"col-lg-3 d-lg-flex mb-0 mt-2" %>
+    <div class="col-lg-7 d-lg-flex align-items-center">
+      <%= f.text_field :address, placeholder:"東京都渋谷区代々木神園町0-0", class:"w-100 mt-2" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit "変更内容を保存" %>
+  <div class="field row mb-2">
+    <%= f.label :name, class:"col-lg-3 d-lg-flex mb-0 mt-2" %>
+    <div class="col-lg-3 d-lg-flex align-items-center">
+      <%= f.text_field :name, placeholder: "令和道子", class:"w-100 mt-2" %>
+    </div>
+    <%= f.submit "変更内容を保存", class:"btn btn-success offset-4" %>
   </div>
 <% end %>
