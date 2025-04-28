@@ -1,33 +1,50 @@
-<h1>会員情報編集</h1>
-<%= form_with model:@customer, url: update_information_path do |f| %>
-  <div>
-    <%= f.label :last_name, "氏名" %>
-    <%= f.text_field :last_name %>
-    <%= f.text_field :first_name %>
+<h3 class="title d-inline px-3">会員情報編集</h3>
+<%= form_with model:@customer, url: update_information_path, class: "mt-5" do |f| %>
+  <div class="field row mb-2">
+    <span class="col-lg-3 d-lg-flex mt-2">名前</span>
+    <div class="col-lg-3 d-lg-flex align-items-center">
+      <%= f.text_field :last_name, autofocus: true, placeholder: "令和", class:"w-100 mt-2" %>
+    </div>
+    <div class="col-lg-3 d-lg-flex align-items-center">
+      <%= f.text_field :first_name, placeholder: "道子", class:"w-100 mt-2" %>
+    </div>
   </div>
-  <div>
-    <%= f.label :last_name_kana, "カナ" %>
-    <%= f.text_field :last_name_kana %>
-    <%= f.text_field :first_name_kana %>
+  <div class="field row mb-2">
+    <span class="col-lg-3 d-lg-flex mt-2">フリガナ</span>
+    <div class="col-lg-3 d-lg-flex align-items-center">
+      <%= f.text_field :last_name_kana, placeholder: "レイワ", class:"w-100 mt-2" %>
+    </div>
+    <div class="col-lg-3 d-lg-flex align-items-center">
+      <%= f.text_field :first_name_kana, placeholder: "ミチコ", class:"w-100 mt-2" %>
+    </div>
   </div>
-  <div>
-    <%= f.label :postal_code, "郵便番号" %>
-    <%= f.text_field :postal_code %>
+  <div class="field row mb-2">
+    <%= f.label :postal_code, class:"col-lg-3 d-lg-flex mb-0 mt-2" %>
+    <div class="col-lg-3 d-lg-flex align-items-center">
+      <%= f.text_field :postal_code, placeholder:"0000000", class:"w-100 mt-2" %>
+    </div>
   </div>
-  <div>
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address %>
+  <div class="field row mb-2">
+    <%= f.label :address, class:"col-lg-3 d-lg-flex mb-0 mt-2" %>
+    <div class="col-lg-7 d-lg-flex align-items-center">
+      <%= f.text_field :address, class:"w-100 mt-2" %>
+    </div>
   </div>
-  <div>
-    <%= f.label :telephone_number, "電話番号" %>
-    <%= f.text_field :telephone_number %>
+
+  <div class="field row mb-2">
+    <%= f.label :telephone_number, class:"col-lg-3 d-lg-flex mb-0 mt-2" %>
+    <div class="col-lg-3 d-lg-flex align-items-center">
+      <%= f.text_field :telephone_number, placeholder:"00000000000", class:"w-100 mt-2" %>
+    </div>
   </div>
-  <div>
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.text_field :email %>
+  <div class="field row mb-2">
+    <%= f.label :email, class:"col-lg-3 d-lg-flex mb-0 mt-2" %>
+    <div class="col-lg-3 d-lg-flex align-items-center">
+      <%= f.text_field :email, class:"w-100 mt-2" %>
+    </div>
   </div>
-  <div>
-    <%= f.submit "更新" %>
+  <div class="field row mx-2">
+    <%= f.submit "編集内容を更新", class:"btn btn-success offset-lg-3 col-lg-2 d-lg-flex mt-3" %>
+    <%= link_to "退会する", unsubscribe_path, class:"btn btn-danger offset-lg-2 col-lg-2 mt-3" %>
   </div>
 <% end %>
-<%= link_to "退会", unsubscribe_path %>
