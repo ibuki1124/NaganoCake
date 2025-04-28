@@ -1,5 +1,6 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
+  before_action :check_cart_items, only: [:new, :confirm, :create]
   def new
     @order = Order.new
     @address = current_customer.addresses
@@ -68,5 +69,11 @@ class Public::OrdersController < ApplicationController
   private
   def order_params
     params.require(:order).permit(:payment_method, :postal_code, :address, :name, :total_payment, :shipping_cost)
+  end
+  # 自身のカートに商品があるかどうか確認
+  def check_cart_items
+    if current_customer.cart_items.empty?
+      redirect_to cart_items_path
+    end
   end
 end
