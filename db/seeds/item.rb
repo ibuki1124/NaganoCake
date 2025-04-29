@@ -32,7 +32,10 @@ item.each do |item|
   Item.create!(item)
   item_data = Item.find_by(name: item[:name])
   file_path = Rails.root.join("app/assets/images/items/item-#{item_data.id}.jpg")
+  no_image = Rails.root.join("app/assets/images/no_image.jpg")
   if File.exist?(file_path)
     item_data.image.attach(io: File.open(file_path), filename: "item-#{item_data.id}.jpg", content_type: "image/jpeg")
+  else
+    item_data.image.attach(io: File.open(no_image), filename: "no_image.jpg", content_type: "image/jpeg")
   end
 end
