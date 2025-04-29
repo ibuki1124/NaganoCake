@@ -1,24 +1,24 @@
-# README
+# NaganoCake
+---
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## レイアウト
+- **顧客（Customer）側のみ実装済み**
+- **管理者（Admin）側は未実装**
 
-Things you may want to cover:
+---
 
-* Ruby version
+## テストデータ
 
-* System dependencies
+### 管理者アカウント
+- **Email**：`admin@example.com`
+- **Password**：`password`
 
-* Configuration
+### 顧客アカウント（15人）
+- **Email**：ランダム（要確認）
+- **Password**：`password`
 
-* Database creation
+### 商品データ
+- **商品数**：28種類
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### ジャンルデータ
+- **ジャンル数**：14種類
